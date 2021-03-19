@@ -35,6 +35,7 @@ let docOne = addUID({name: "yoshi", age: 40})
 
 console.log(docOne.age)
 
+// Enums
 enum ResourceType {BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
 
 interface Resource<T> {
@@ -50,5 +51,3 @@ let docTwo: Resource<string[]> = {
 }
 
 console.log(docTwo)
-
-// Enums

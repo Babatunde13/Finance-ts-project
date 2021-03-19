@@ -27,6 +27,7 @@ const addUID = (obj) => {
 };
 let docOne = addUID({ name: "yoshi", age: 40 });
 console.log(docOne.age);
+// Enums
 var ResourceType;
 (function (ResourceType) {
     ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
@@ -40,4 +41,3 @@ let docTwo = {
     rsourceType: ResourceType.AUTHOR
 };
 console.log(docTwo);
-// Enums
