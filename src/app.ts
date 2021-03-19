@@ -9,45 +9,18 @@ const toFrom = document.querySelector('#tofrom') as HTMLInputElement
 const details = document.querySelector('#details') as HTMLInputElement
 const amount = document.querySelector('#amount') as HTMLInputElement
 
-// list template instanc
+// list template instance
 const ul = document.querySelector('ul')!
 const list = new ListTemplate(ul)
 
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault()
     let doc: HasFormatter
+    let data: [string, string, number] = [toFrom.value, details.value, amount.valueAsNumber]
     if (type.value === 'invoice') {
-      doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber)
+      doc = new Invoice(...data)
     } else {
-      doc = new Payment(toFrom.value, details.value, amount.valueAsNumber)
+      doc = new Payment(...data)
     }
     list.render(doc, type.value, 'end')
 })
-
-// Generics
-
-const addUID = <T extends {name: string}>(obj: T) => {
-  let uid = Math.floor(Math.random() * 100)
-  return {...obj, uid}
-}
-
-let docOne = addUID({name: "yoshi", age: 40})
-
-console.log(docOne.age)
-
-// Enums
-enum ResourceType {BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
-
-interface Resource<T> {
-  uid: number
-  resourceName: string
-  data: T,
-  rsourceType: number
-}
-
-let docTwo: Resource<string[]> = {
-  uid: 3, resourceName: '', data: [],
-  rsourceType: ResourceType.AUTHOR
-}
-
-console.log(docTwo)
